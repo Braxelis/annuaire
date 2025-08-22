@@ -1,39 +1,17 @@
-import { logout } from './api.js';
-
-export async function loadPartials() {
-    try {
-        // Chargement du header
-        const headerResponse = await fetch("public/partials/header.html");
-        const headerContent = await headerResponse.text();
-        document.getElementById("header-placeholder").innerHTML = headerContent;
-
-        // Chargement du footer
-        const footerResponse = await fetch("public/partials/footer.html");
-        const footerContent = await footerResponse.text();
-        document.getElementById("footer-placeholder").innerHTML = footerContent;
-
-        // Gestion du bouton de déconnexion
-        const logoutBtn = document.getElementById("logoutBtn");
-        if (logoutBtn) {
-            logoutBtn.addEventListener("click", async () => {
-                try {
-                    // Désactiver le bouton pendant la déconnexion
-                    logoutBtn.disabled = true;
-                    logoutBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Déconnexion...';
-                    
-                    await logout();
-                    window.location.href = "login.html";
-                } catch (error) {
-                    console.error("Erreur lors de la déconnexion:", error);
-                    alert("Une erreur est survenue lors de la déconnexion");
-                    
-                    // Réactiver le bouton en cas d'erreur
-                    logoutBtn.disabled = false;
-                    logoutBtn.innerHTML = '<i class="fas fa-sign-out-alt"></i> Déconnexion';
-                }
-            });
-        }
-    } catch (error) {
-        console.error("Erreur lors du chargement des partials:", error);
-    }
+export const qs  = (s, r=document)=> r.querySelector(s);
+export const qsa = (s, r=document)=> Array.from(r.querySelectorAll(s));
+export function setText(el, t){ if(el) el.textContent = t; }
+export function badgeStatut(s){
+  const v = (s||'').toLowerCase();
+  if (v.includes('stag')) return '<span class="badge bg-warning text-dark">Stagiaire</span>';
+  if (v.includes('a.s'))  return '<span class="badge bg-secondary">A.S</span>';
+  return '<span class="badge bg-success">Employé</span>';
+}
+export function toast(msg, cls='text-danger'){
+  const el = document.createElement('div');
+  el.className = 'position-fixed bottom-0 start-50 translate-middle-x mb-3 p-2 px-3 bg-white border rounded shadow ' + cls;
+  el.style.zIndex = 1080;
+  el.textContent = msg;
+  document.body.appendChild(el);
+  setTimeout(()=> el.remove(), 3000);
 }

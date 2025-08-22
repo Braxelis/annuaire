@@ -1,123 +1,120 @@
-//Lien du backend
-const API_BASE_URL = "http://localhost:8000/api";
+const API_BASE_URL =
+  localStorage.getItem("ANNUIARE_API_BASE_URL") || "http://localhost:8000";
+const TOKEN_KEY = "ANNUIARE_TOKEN",
+  USER_KEY = "ANNUIARE_USER";
 
-//Gestion du token
-const TOKEN_KEY = "auth_token";
-const USER_KEY = "user_data";
-
-//Fonction de sauvegarde du token
-export function saveToken(token, userData) {
-    localStorage.setItem(TOKEN_KEY, token);
-    localStorage.setItem(USER_KEY, JSON.stringify(userData));
-}
-
-//Fonction de récupération du token
 export function getToken() {
-    return localStorage.getItem(TOKEN_KEY);
+  return localStorage.getItem(TOKEN_KEY);
+}
+export function setToken(t) {
+  if (t) localStorage.setItem(TOKEN_KEY, t);
+  else localStorage.removeItem(TOKEN_KEY);
+}
+export function setUser(u) {
+  if (u) localStorage.setItem(USER_KEY, JSON.stringify(u));
+  else localStorage.removeItem(USER_KEY);
+}
+export function getUser() {
+  try {
+    return JSON.parse(localStorage.getItem(USER_KEY) || "null");
+  } catch (e) {
+    return null;
+  }
 }
 
-//Fonction de suppression du token
-export function clearAuth() {
-    localStorage.removeItem(TOKEN_KEY);
-    localStorage.removeItem(USER_KEY);
+async function api(path, { method = "GET", body, auth = true } = {}) {
+  const headers = { "Content-Type": "application/json" };
+  if (auth && getToken()) headers["Authorization"] = "Bearer " + getToken();
+  const res = await fetch(API_BASE_URL + path, {
+    method,
+    headers,
+    body: body ? JSON.stringify(body) : undefined,
+  });
+  if (res.status === 204) return null;
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data?.error || "Erreur API");
+  return data;
 }
 
-//Fonction pour vérifier si l'utilisateur est connecté
-export function isAuthenticated() {
-    return !!getToken();
-}
-
-//Fonction pour récupérer les données de l'utilisateur
-export function getUserData() {
-    try {
-        const userData = localStorage.getItem(USER_KEY);
-        return userData ? JSON.parse(userData) : null;
-    } catch (error) {
-        console.error("Error parsing user data:", error);
-        return null;
-    }
-}
-
-//Fonction de requête générique avec gestion des erreurs
-async function apiRequest(endpoint, options = {}) {
-    const headers = {
-        "Content-Type": "application/json",
-        ...(getToken() ? { Authorization: `Bearer ${getToken()}` } : {})
-    };
-
-    try {
-        const response = await fetch(`${API_BASE_URL}/${endpoint}`, {
-            ...options,
-            headers,
-        });
-
-        if (!response.ok) {
-            const error = await response.json();
-            throw new Error(error.message || "Une erreur s'est produite");
-        }
-
-        return await response.json();
-    } catch (error) {
-        console.error("Erreur lors de la requête API:", error);
-        throw error;
-    }
-}
-
-//Fonction pour l'authentification de l'utilisateur
 export async function login(matricule, motdepasse) {
-    const data = await apiRequest("login", {
-        method: "POST",
-        body: JSON.stringify({ matricule, motdepasse }),
-    });
-
-    if (data.token) {
-        saveToken(data.token, data.user);
-        return true;
-    } else {
-        return false;
-    } 
+  const { token } = await api("/api/login", {
+    method: "POST",
+    body: { matricule, motdepasse },
+    auth: false,
+  });
+  setToken(token);
+  const me = await api("/api/me", { method: "GET" });
+  setUser(me);
+  return me;
 }
-
-//Fonction pour la déconnexion de l'utilisateur
 export async function logout() {
-    try {
-        await apiRequest("logout", {
-            method: "POST",
-        });
-        clearAuth();
-    } catch (error) {
-        console.error("Erreur lors de la demande de déconnexion:", error);
-    }finally {
-        clearAuth();
-    }
+  try {
+    await api("/api/logout", { method: "POST" });
+  } catch {}
+  setToken(null);
+  setUser(null);
+}
+export function requireAuth(redirect = "login.html") {
+  if (!getToken()) window.location.href = redirect;
+}
+export function requireAdminGuard(redirect = "annuaire.html") {
+  const u = getUser();
+  if (!u || !u.isadmin) window.location.href = redirect;
 }
 
-//Fonction pour récupérer les informations de l'utilisateur courant
-export async function getMe() {
-    try {
-        return await apiRequest("me");
-    } catch (error) {
-        console.error("Erreur lors de la demande de données utilisateur:", error);
-        return null;
+export async function searchPersonnel(filters) {
+  const qs = new URLSearchParams();
+
+  // Separate search parameters
+  if (filters.nom) {
+    return api("/api/personnel?nom=" + encodeURIComponent(filters.nom));
+  }
+  if (filters.matricule) {
+    return api(
+      "/api/personnel?matricule=" + encodeURIComponent(filters.matricule)
+    );
+  }
+  if (filters.email) {
+    return api(
+      "/api/personnel?email=" + encodeURIComponent(filters.email)
+    );
+  }
+
+  // Other filters
+  Object.entries(filters || {}).forEach(([k, v]) => {
+    if (
+      v !== undefined &&
+      v !== null &&
+      v !== "" &&
+      !["nom", "matricule", "email"].includes(k)
+    ) {
+      qs.append(k, v);
     }
+  });
+
+  return api("/api/personnel" + (qs.toString() ? "?" + qs.toString() : ""));
 }
 
-//Fonction pour la recherche de personnel
-export async function searchPersonnel(query = "") {
-    try {
-        return await apiRequest(`personnel?query=${encodeURIComponent(query)}`);
-    } catch (error) {
-        console.error("Erreur lors de la recherche de personnel:", error);
-        return [];
-    }
+export async function listAll(limit = 1000) {
+  return searchPersonnel({ limit });
 }
 
-//Fonction pour la récupération de tous les personnels
-export async function getAllPersonnel() {
-    try {
-        return await apiRequest("personnel");
-    } catch (error) {
-        console.error("Erreur lors de la recherche de personnel:", error);
-        return [];
-    }
+export async function createUser(payload) {
+  return api("/api/personnel", { method: "POST", body: payload });
 }
+
+export async function updateUser(matricule, payload) {
+  return api("/api/personnel/" + encodeURIComponent(matricule), {
+    method: "PUT",
+    body: payload,
+  });
+}
+
+export async function getByMatricule(matricule) {
+  const res = await searchPersonnel({ matricule, limit: 1 });
+  const item = (res.results || [])[0];
+  if (!item) throw new Error("Employé introuvable");
+  return item;
+}
+
+export { API_BASE_URL };

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Camair‑Co • Annuaire</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-white border-bottom">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"
+          ><img src="assets/img/camairco-logo.svg" alt="Camair‑Co"
+        /></a>
+        <div class="d-flex gap-2">
+          <a href="profil.html" class="btn btn-outline-secondary"
+            ><i class="fa fa-user"></i> Mon profil</a
+          >
+          <a
+            id="btn-admin"
+            href="dashboard.html"
+            class="btn btn-outline-primary d-none"
+            ><i class="fa fa-gauge"></i> Dashboard</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <div class="container py-4">
+      <div class="card p-3 mb-3">
+        <h4 class="card-title">
+          <i class="fa fa-search"></i> Recherche employés
+        </h4>
+        <form id="search-form" class="row g-2">
+          <div class="col-md-4">
+            <input id="nom" class="form-control" placeholder="Nom" />
+          </div>
+          <div class="col-md-4">
+            <input
+              id="matricule"
+              class="form-control"
+              placeholder="Matricule"
+            />
+          </div>
+          <div class="col-md-4">
+            <input id="email" class="form-control" placeholder="Email" />
+          </div>
+          <div class="col-md-3">
+            <input id="poste" class="form-control" placeholder="Poste" />
+          </div>
+          <div class="col-md-3">
+            <input id="statut" class="form-control" placeholder="Statut" />
+          </div>
+          <div class="col-md-2">
+            <input
+              id="departement"
+              class="form-control"
+              placeholder="Département"
+            />
+          </div>
+          <div class="col-md-2">
+            <input id="service" class="form-control" placeholder="Service" />
+          </div>
+          <div class="col-md-2">
+            <input id="ville" class="form-control" placeholder="Ville" />
+          </div>
+          <!-- Hidden inputs -->
+          <input type="hidden" id="limit" value="25" />
+          <input type="hidden" id="offset" value="0" />
+          <div class="col-md-12 text-end">
+            <button class="btn btn-success" id="btn-search">
+              <i class="fa fa-magnifying-glass"></i> Rechercher
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div id="results-container">
+        <div class="row g-3" id="results-grid"></div>
+
+        <nav class="mt-4">
+          <ul class="pagination justify-content-center">
+            <li class="page-item">
+              <button class="page-link" id="prev-page" disabled>
+                <i class="fa fa-chevron-left"></i> Précédent
+              </button>
+            </li>
+            <li class="page-item">
+              <button class="page-link" id="next-page" disabled>
+                Suivant <i class="fa fa-chevron-right"></i>
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <div id="search-message" class="text-danger mt-2"></div>
+    </div>
+
+    <footer class="footer-stick text-center">
+      <button id="btn-logout" class="btn btn-danger">
+        <i class="fa fa-right-from-bracket"></i> Déconnexion
+      </button>
+    </footer>
+
+    <script type="module">
+      import { mountSearchPage } from "./js/search.js";
+      mountSearchPage();
+    </script>
+  </body>
+</html>
