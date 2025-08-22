@@ -77,4 +77,42 @@ class Personnel {
         $stmt->execute();
         return $stmt->fetchAll();
     }
+
+    public function update(string $matricule, array $data) : bool {
+        // Vérifier que l'utilisateur existe
+        $existing = $this->findByMatricule($matricule);
+        if (!$existing) {
+            return false;
+        }
+
+        // Champs autorisés pour la mise à jour
+        $allowedFields = ['idsite', 'nom', 'email', 'telephoneqc', 'poste', 'statut', 'departement', 'service', 'isadmin'];
+        
+        // Préparer les champs à mettre à jour
+        $updateFields = [];
+        $params = ['matricule' => $matricule];
+        
+        foreach ($allowedFields as $field) {
+            if (array_key_exists($field, $data)) {
+                $updateFields[] = "$field = :$field";
+                $params[$field] = $data[$field];
+            }
+        }
+        
+        // Gestion spéciale du mot de passe
+        if (!empty($data['motdepasse'])) {
+            $updateFields[] = "motdepasse = :motdepasse";
+            $params['motdepasse'] = password_hash($data['motdepasse'], PASSWORD_DEFAULT);
+        }
+        
+        // Si aucun champ à mettre à jour
+        if (empty($updateFields)) {
+            return true; // Aucune modification nécessaire
+        }
+        
+        $sql = "UPDATE personnel SET " . implode(', ', $updateFields) . " WHERE matricule = :matricule";
+        $stmt = $this->pdo->prepare($sql);
+        
+        return $stmt->execute($params);
+    }
 }

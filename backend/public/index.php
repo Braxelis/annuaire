@@ -19,7 +19,7 @@ if (in_array($origin, $config['cors']['allowed_origins'])) {
     header("Access-Control-Allow-Origin: $origin");
 }
 header('Access-Control-Allow-Headers: Content-Type, Authorization');
-header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+header('Access-Control-Allow-Methods: GET, POST, PUT, OPTIONS');
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') { http_response_code(200); exit; }
 
 $routes = require __DIR__ . '/../routes/api.php';
@@ -29,8 +29,24 @@ $scriptName = dirname($_SERVER['SCRIPT_NAME']);
 if ($scriptName !== '/' && strpos($path, $scriptName) === 0) $path = substr($path, strlen($scriptName));
 $path = rtrim($path, '/') ?: '/';
 
+// Vérifier les routes exactes d'abord
 if (isset($routes[$method][$path])) {
     $routes[$method][$path]($config);
-} else {
-    \App\Helpers\Response::error('Not Found', 404);
+    exit;
 }
+
+// Vérifier les routes avec wildcards
+foreach ($routes[$method] ?? [] as $routePattern => $handler) {
+    if (strpos($routePattern, '*') !== false) {
+        // Convertir le pattern en regex
+        $pattern = str_replace('/', '\/', $routePattern);
+        $pattern = '/^' . str_replace('*', '([^\/]+)', $pattern) . '$/';
+        
+        if (preg_match($pattern, $path, $matches)) {
+            $handler($config);
+            exit;
+        }
+    }
+}
+
+\App\Helpers\Response::error('Not Found', 404);

@@ -80,4 +80,52 @@ class AuthController {
 
         Response::json(['matricule' => $mat], 201);
     }
+
+    public function updateUser() : void {
+        $authData = AuthHelper::requireToken($this->config);
+        AuthHelper::requireAdmin($authData['payload']);
+        
+        // Récupérer le matricule depuis l'URL
+        $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+        $parts = explode('/', $path);
+        $matricule = end($parts);
+        
+        if (empty($matricule)) {
+            Response::error('Matricule requis dans l\'URL', 400);
+        }
+
+        $in = json_decode(file_get_contents('php://input'), true) ?: [];
+        
+        // Vérifier qu'au moins un champ à mettre à jour est fourni
+        $allowedFields = ['idsite', 'nom', 'email', 'telephoneqc', 'poste', 'statut', 'departement', 'service', 'isadmin', 'motdepasse'];
+        $hasUpdate = false;
+        
+        foreach ($allowedFields as $field) {
+            if (array_key_exists($field, $in)) {
+                $hasUpdate = true;
+                break;
+            }
+        }
+        
+        if (!$hasUpdate) {
+            Response::error('Aucun champ valide fourni pour la mise à jour', 400);
+        }
+
+        $pdo = Database::getConnection($this->config['db']);
+        $model = new Personnel($pdo);
+
+        // Vérifier que l'utilisateur existe
+        $existing = $model->findByMatricule($matricule);
+        if (!$existing) {
+            Response::error('Utilisateur non trouvé', 404);
+        }
+
+        $success = $model->update($matricule, $in);
+        
+        if ($success) {
+            Response::json(['message' => 'Utilisateur mis à jour avec succès', 'matricule' => $matricule]);
+        } else {
+            Response::error('Erreur lors de la mise à jour de l\'utilisateur', 500);
+        }
+    }
 }

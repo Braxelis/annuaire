@@ -12,4 +12,7 @@ return [
         '/api/me' => function($config){ (new AuthController($config))->me(); },
         '/api/personnel' => function($config){ (new SearchController($config))->search(); },
     ],
+    'PUT' => [
+        '/api/personnel/*' => function($config){ (new AuthController($config))->updateUser(); }, // admin only
+    ],
 ];
