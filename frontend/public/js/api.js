@@ -110,6 +110,12 @@ export async function updateUser(matricule, payload) {
   });
 }
 
+export async function deleteUser(matricule) {
+  return api("/api/personnel/" + encodeURIComponent(matricule), {
+    method: "DELETE",
+  });
+}
+
 export async function getByMatricule(matricule) {
   const res = await searchPersonnel({ matricule, limit: 1 });
   const item = (res.results || [])[0];

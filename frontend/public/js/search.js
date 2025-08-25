@@ -117,6 +117,21 @@ function handlePagination() {
   });
 }
 
+function toggleAdvancedSearch() {
+  const advancedFields = qs("#advanced-search-fields");
+  const advancedBtn = qs("#btn-advanced-search");
+  
+  if (advancedFields.classList.contains("d-none")) {
+    advancedFields.classList.remove("d-none");
+    advancedBtn.innerHTML = '<i class="fa fa-times"></i> Masquer recherche avancée';
+    advancedBtn.classList.replace("btn-outline-secondary", "btn-outline-primary");
+  } else {
+    advancedFields.classList.add("d-none");
+    advancedBtn.innerHTML = '<i class="fa fa-gear"></i> Recherche avancée';
+    advancedBtn.classList.replace("btn-outline-primary", "btn-outline-secondary");
+  }
+}
+
 export function mountSearchPage() {
   mountAuthGuard();
   mountLogoutButton();
@@ -127,6 +142,11 @@ export function mountSearchPage() {
     qs("#offset").value = 0; // Reset pagination on new search
     doSearch();
   });
+  
+  // Add advanced search toggle functionality
+  const advancedBtn = qs("#btn-advanced-search");
+  advancedBtn.addEventListener("click", toggleAdvancedSearch);
+  
   handlePagination();
   doSearch();
 }

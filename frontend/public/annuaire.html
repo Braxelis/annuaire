@@ -40,46 +40,54 @@
           <i class="fa fa-search"></i> Recherche employés
         </h4>
         <form id="search-form" class="row g-2">
-          <div class="col-md-4">
+          <div class="col-md-8">
             <input id="nom" class="form-control" placeholder="Nom" />
           </div>
-          <div class="col-md-4">
-            <input
-              id="matricule"
-              class="form-control"
-              placeholder="Matricule"
-            />
-          </div>
-          <div class="col-md-4">
-            <input id="email" class="form-control" placeholder="Email" />
-          </div>
-          <div class="col-md-3">
-            <input id="poste" class="form-control" placeholder="Poste" />
-          </div>
-          <div class="col-md-3">
-            <input id="statut" class="form-control" placeholder="Statut" />
-          </div>
-          <div class="col-md-2">
-            <input
-              id="departement"
-              class="form-control"
-              placeholder="Département"
-            />
-          </div>
-          <div class="col-md-2">
-            <input id="service" class="form-control" placeholder="Service" />
-          </div>
-          <div class="col-md-2">
-            <input id="ville" class="form-control" placeholder="Ville" />
-          </div>
-          <!-- Hidden inputs -->
-          <input type="hidden" id="limit" value="25" />
-          <input type="hidden" id="offset" value="0" />
-          <div class="col-md-12 text-end">
+          <div class="col-md-4 text-end">
+            <button type="button" class="btn btn-outline-secondary me-2" id="btn-advanced-search">
+              <i class="fa fa-gear"></i> Recherche avancée
+            </button>
             <button class="btn btn-success" id="btn-search">
               <i class="fa fa-magnifying-glass"></i> Rechercher
             </button>
           </div>
+          
+          <!-- Advanced search fields (hidden by default) -->
+          <div id="advanced-search-fields" class="row g-2 mt-2 d-none">
+            <div class="col-md-4">
+              <input
+                id="matricule"
+                class="form-control"
+                placeholder="Matricule"
+              />
+            </div>
+            <div class="col-md-4">
+              <input id="email" class="form-control" placeholder="Email" />
+            </div>
+            <div class="col-md-4">
+              <input id="poste" class="form-control" placeholder="Poste" />
+            </div>
+            <div class="col-md-4">
+              <input id="statut" class="form-control" placeholder="Statut" />
+            </div>
+            <div class="col-md-4">
+              <input
+                id="departement"
+                class="form-control"
+                placeholder="Département"
+              />
+            </div>
+            <div class="col-md-4">
+              <input id="service" class="form-control" placeholder="Service" />
+            </div>
+            <div class="col-md-4">
+              <input id="ville" class="form-control" placeholder="Ville" />
+            </div>
+          </div>
+          
+          <!-- Hidden inputs -->
+          <input type="hidden" id="limit" value="25" />
+          <input type="hidden" id="offset" value="0" />
         </form>
       </div>
 

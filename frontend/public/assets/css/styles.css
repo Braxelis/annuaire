@@ -50,6 +50,17 @@ footer.footer-stick {
   min-height: 100vh;
   background: #0f172a;
   color: #e5e7eb;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+/* Adjust main content to account for fixed sidebar */
+body > div.d-flex > main {
+  margin-left: 240px;
+  width: calc(100% - 240px);
 }
 .sidebar a {
   display: block;
@@ -86,11 +97,18 @@ footer.footer-stick {
   text-decoration: underline;
 }
 
+#results-grid .col {
+  width: 20%; /* 5 cards per row (100% / 5 = 20%) */
+  min-width: 280px; /* Minimum width for responsiveness */
+  flex: 0 0 auto;
+}
+
 #results-grid .card {
   transition: transform 0.2s;
   height: 280px; /* Fixed height for result cards */
   display: flex;
   flex-direction: column;
+  margin-bottom: 1rem;
 }
 
 #results-grid .card .card-body {
@@ -116,6 +134,17 @@ footer.footer-stick {
 #results-grid .card:hover {
   transform: translateY(-5px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Ensure consistent grid layout */
+#results-grid .row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -0.5rem; /* Compensate for card margin */
+}
+
+#results-grid .row > .col {
+  padding: 0.5rem;
 }
 
 .pagination .page-link {
