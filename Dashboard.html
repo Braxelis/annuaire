@@ -1,0 +1,900 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Réservez votre prochain voyage en ligne avec des billet d'avion pas cher. Vol pas cher pour voyages dans le monde entier par - Camair-co | l'étoile du Cameroun" />
+  <title>Annuaire-Camair-Co</title>
+  
+  <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="plugins/ps-icon/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+  <!-- CSS Library-->
+  <link rel="stylesheet" href="plugins/bootstrap/dist/css/bootstrap.min.css">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap Icons (pour bi bi-house) -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+  <link rel="icon" href="Assets/Images/Camair1.jpeg" type="image-icon">
+  <link rel="apple-touch-icon" href="Assets/Images/Camair1.jpeg" type="image-icon">
+  <style>:root {
+    --camair-red: #CC1F2F;
+    --camair-yellow: #FFCC00;
+    --camair-green: rgb(10, 104, 41);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+    body {
+        font-size: 14px;
+        font-weight: 400;
+        font-family: "proxima-nova","Open Sans","Arial","Helvetica",sans-serif;
+        min-width: 1.875em;
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+        color: var(--camair-green);
+        background-color: #f7f7f7;
+        width: 100%;
+        -webkit-font-smoothing: antialiased;
+    } .table-responsive {
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        overflow: hidden;
+        background: white;
+    }
+    
+    .table thead th {
+        background-color: #f8f9fa;
+        border: none;
+        font-weight: 600;
+        padding: 15px;
+        color: var(--camair-green);
+    }
+    
+    .table tbody tr {
+        transition: all 0.3s ease;
+    }
+    
+    .table tbody tr:hover {
+        background-color: #f8f9fa;
+        transform: scale(1.01);
+    }
+    
+    .breadcrumb {
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .nav-link {
+        color: #495057 !important;
+        padding: 12px 15px;
+        margin: 2px 0;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+    
+    .nav-link:hover {
+        background-color: #e9ecef;
+        transform: translateX(5px);
+    }
+    
+    .nav-link.active {
+        background-color: lightblue;
+        color: var(--camair-green) !important;
+    }
+    #scrollTopBtn {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background-color: var(--camair-green);
+        border: none;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+        z-index: 1050;
+    }
+    
+    #scrollTopBtn:hover {
+        transform: scale(1.1);
+    }
+    
+    #scrollIcon {
+        color: white;
+        font-size: 24px;
+    }
+/* Navigation */
+.navbar-camair {
+    width: 100%;
+    height: 85px;
+    background-color: var(--camair-green);
+    background-image: url('Assets/images/log.png');
+    background-attachment: local;
+    background-position-x: right;
+    background-repeat: no-repeat;
+    background-position-y: top;
+    background-size: 165px;
+}
+
+.top-bar {
+    background: white;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+/* Sidebar */
+.sidebar {
+    
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+
+.nav-link {
+    color: #495057 !important;
+    padding: 12px 15px;
+    margin: 2px 0;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.nav-link:hover {
+    background-color: #e9ecef;
+    transform: translateX(5px);
+}
+
+.nav-link.active {
+    background-color: lightblue;
+    color: var(--camair-green) !important;
+}
+
+/* Cards */
+.stats-card {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.stats-card:hover {
+    transform: translateY(-5px);
+}
+
+.stats-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.icon-employees { background: #007bff; }
+.icon-departments { background: #28a745; }
+.icon-active { background: #17a2b8; }
+.icon-sites { background: #6f42c1; }
+
+    .btn-primary {
+        background: var(--camair-green);
+        padding: 0.5rem 1.5rem;
+        font-weight: 500;
+    }
+    
+    .dashboard-header {
+        background: linear-gradient(135deg, var(--camair-green) 0%, #0d7a36 100%);
+        border-radius: 15px;
+        color: white;
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 2rem;
+    }
+    
+    .stats-card {
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .stats-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+    
+    .stats-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        color: white;
+        margin-bottom: 1rem;
+    }
+    
+    .icon-employees { background: linear-gradient(45deg, #4CAF50, #8BC34A); }
+    .icon-departments { background: linear-gradient(45deg, #2196F3, #03DAC6); }
+    .icon-active { background: linear-gradient(45deg, #FF9800, #FFC107); }
+    .icon-sites { background: linear-gradient(45deg, #9C27B0, #E91E63); }
+    
+    .search-container {
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        margin-bottom: 20px;
+    }
+    
+    .search-box {
+        position: relative;
+    }
+    
+    .search-input {
+        border: 2px solid #e9ecef;
+        border-radius: 10px;
+        padding: 12px 50px 12px 20px;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        width: 100%;
+    }
+    
+    .search-input:focus {
+        border-color: var(--camair-green);
+        box-shadow: 0 0 0 0.2rem rgba(10, 104, 41, 0.25);
+        outline: none;
+    }
+    
+    .search-btn {
+        position: absolute;
+        right: 5px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: var(--camair-green);
+        border: none;
+        border-radius: 8px;
+        padding: 8px 15px;
+        color: white;
+        transition: all 0.3s ease;
+    }
+    
+    .search-btn:hover {
+        background: #0d7a36;
+        transform: translateY(-50%) scale(1.05);
+    }
+    
+    .clear-search {
+        background: #6c757d;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 8px 15px;
+        margin-left: 10px;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+    }
+    
+    .clear-search:hover {
+        background: #5a6268;
+        color: white;
+        transform: scale(1.05);
+    }
+    
+    .search-results-info {
+        background: #e3f2fd;
+        border: 1px solid #90caf9;
+        border-radius: 8px;
+        padding: 10px 15px;
+        margin-bottom: 15px;
+        color: #1976d2;
+    }
+
+section{
+    color: var(--camair-green);
+    text-align: center;
+}
+section.bi-facebook:hover { color: #4267B2; }
+section .bi-twitter:hover  { color: #1DA1F2; }
+section.bi-linkedin:hover { color: #0077B5;}
+section .bi-youtube:hover { color: #c13535 }
+section .bi-instagram:hover { color: #C13584;
+ }
+.reseau-sociaux{
+    text-align: center;
+    color: var(--camair-green);
+}
+.fa {
+	font-family: 'FontAwesome';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+.bi {
+	font-family: 'FontAwesome';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+/* Employee Cards */
+.employee-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.employee-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.employee-photo {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.employee-info {
+    padding: 1.5rem;
+}
+
+.employee-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: var(--camair-green);
+}
+
+.employee-matricule {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.department-badge {
+    background: var(--camair-green);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+.employee-details {
+    list-style: none;
+}
+
+.employee-details li {
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.employee-details i {
+    margin-right: 8px;
+    width: 16px;
+    color: var(--camair-green);
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 2rem 0;
+}
+
+.pagination button {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    background: white;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.pagination button:hover {
+    background: var(--camair-green);
+    color: white;
+}
+
+.pagination button.active {
+    background: var(--camair-green);
+    color: white;
+    border-color: var(--camair-green);
+}
+
+.pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+  .pagination .page-link {
+        color: var(--camair-green);
+        border-color: #dee2e6;
+        padding: 12px 16px;
+        margin: 0 3px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+    
+    .pagination .page-link:hover {
+        color: white;
+        background-color: var(--camair-green);
+        border-color: var(--camair-green);
+        transform: translateY(-2px);
+    }
+    
+    .pagination .page-item.active .page-link {
+        background-color: var(--camair-green);
+        border-color: var(--camair-green);
+    }
+    
+    .pagination .page-item.disabled .page-link {
+        color: #6c757d;
+        background-color: white;
+        border-color: #dee2e6;
+    }
+    
+    .pagination-info {
+        background: white;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        margin-bottom: 20px;
+    }
+/* Loading */
+.loading {
+    text-align: center;
+    padding: 2rem;
+}
+
+.spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid var(--camair-green);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Footer */
+footer {
+    background-color: var(--camair-green);
+    color: white;
+    padding: 2rem 0;
+    margin-top: 3rem;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.social-links a {
+    color: white;
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--camair-yellow);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 250px;
+        height: 100vh;
+        background: white;
+        z-index: 1000;
+        transition: left 0.3s ease;
+    }
+    
+    .sidebar.active {
+        left: 0;
+    }
+    
+    .main-content {
+        margin-left: 0;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .search-form {
+        flex-direction: column;
+    }
+    
+    .search-input {
+        margin-bottom: 1rem;
+    }
+}
+
+</style>
+  
+</head>
+
+<body>
+   <!-- Zone blanche supérieure -->
+    <div class="top-bar">
+        <div class="container d-flex justify-content-end align-items-center">
+            <!-- Dropdown Langue -->
+            <div class="dropdown me-3 border-end-0">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                    <i class="bi bi-translate"></i> Fr
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" >Français</a></li>
+                    <li><a class="dropdown-item" >English</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Barre de navigation -->
+    <nav class="navbar navbar-expand-md navbar-camair">
+        <div class="container-brand pc">
+            <div class="topbar-left">
+                <a class="navbar-brand d-flex align-items-center ms-0 ps-0 col-xs-6" href="Index.html">
+                    <img src="Assets/Images/logo-camair-co.png" alt="avion plein ciel" class="mt-2" style="width:200px; height:60px">
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Menu latéral -->
+            <nav class="col-md-2 col-lg-2 d-md-block bg-light sidebar">
+                <div class="position-sticky pt-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item"><a class="nav-link" href="index.php">🏠 Accueil</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="dashboard.php">📋 Dashboard</a></li>
+                        <li class="nav-item"><a class="nav-link" href="add2.php">➕ Ajouter</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="profile.php">
+                                <i class="bi bi-person-circle me-2"></i>Mon profil
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="logout.php">🚪 Déconnexion</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Contenu principal -->
+            <main class="col-md-10 ms-sm-auto col-lg-10 px-md-4">
+                <!-- Breadcrumb -->
+                <div class="container py-5">
+                    <nav aria-label="breadcrumb" class="mb-4">
+                        <ol class="breadcrumb mb-0 py-2 px-3">
+                            <li class="breadcrumb-item">
+                                <a href="index.php" class="text-decoration-none">
+                                    <i class="bi bi-house"></i> Accueil
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item active">
+                                <a href="dashboard.php" class="text-decoration-none">📋Dashboard</a>
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+
+                <!-- Header du dashboard -->
+                <div class="dashboard-header">
+                    <div class="row align-items-center p-4 position-relative">
+                        <div class="col-md-8">
+                            <h2 class="mb-2">
+                                <i class="bi bi-speedometer2 me-2"></i>
+                                Tableau de bord - Personnel Camair-Co
+                            </h2>
+                            <p class="mb-0 opacity-75">Gérez efficacement votre équipe avec notre système intégré</p>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <i class="bi bi-airplane" style="font-size: 4rem; opacity: 0.3;"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- frontend/components/stats.html -->
+<div class="row g-3 mb-4">
+  <div class="col-md-3 col-sm-6">
+    <div class="stats-card text-center">
+      <div class="stats-icon icon-employees mx-auto">
+        <i class="bi bi-people"></i>
+      </div>
+      <h5 id="totalEmployes" class="fw-bold text-dark">...</h5>
+      <p id="labelEmployes" class="text-muted mb-0">Employés</p>
+    </div>
+  </div>
+  <div class="col-md-3 col-sm-6">
+    <div class="stats-card text-center">
+      <div class="stats-icon icon-departments mx-auto">
+        <i class="bi bi-building"></i>
+      </div>
+      <h5 id="totalDepartements" class="fw-bold text-dark">...</h5>
+      <p class="text-muted mb-0">Départements</p>
+    </div>
+  </div>
+  <div class="col-md-3 col-sm-6">
+    <div class="stats-card text-center">
+      <div class="stats-icon icon-active mx-auto">
+        <i class="bi bi-person-check"></i>
+      </div>
+      <h5 id="totalContractuels" class="fw-bold text-dark">...</h5>
+      <p class="text-muted mb-0">Employés contractuels</p>
+    </div>
+  </div>
+  <div class="col-md-3 col-sm-6">
+    <div class="stats-card text-center">
+      <div class="stats-icon icon-sites mx-auto">
+        <i class="bi bi-geo-alt"></i>
+      </div>
+      <h5 id="totalSites" class="fw-bold text-dark">...</h5>
+      <p class="text-muted mb-0">Sites</p>
+    </div>
+  </div>
+</div>
+<!-- Zone de recherche -->
+<div class="search-container">
+  <div class="row align-items-center">
+    <div class="col-md-9">
+      <h5 class="mb-3">
+        <i class="bi bi-search me-2"></i>
+        Rechercher un employé
+      </h5>
+      <form id="searchForm" class="search-box">
+        <div class="position-relative">
+          <input type="text" 
+                 id="searchInput"
+                 class="search-input" 
+                 placeholder="Rechercher par nom, poste, statut, site, email, département, service, numéro QC ou matricule..."
+                 autocomplete="off">
+          <button type="submit" class="search-btn">
+            <i class="bi bi-search"></i>
+          </button>
+        </div>
+        <a href="#" id="clearSearch" class="clear-search" style="display:none;">
+          <i class="bi bi-x-circle me-1"></i>Effacer
+        </a>
+      </form>
+    </div>
+    <div class="col-md-4 text-center">
+      <i class="bi bi-person-search" style="font-size: 3rem; color: var(--camair-green); opacity: 0.3;"></i>
+    </div>
+  </div>
+</div>
+
+<!-- Résultats de recherche -->
+<div id="searchResultsInfo" class="search-results-info" style="display:none;"></div>
+
+<!-- Pagination -->
+<div class="pagination-info">
+  <div class="row align-items-center">
+    <div class="col-md-6">
+      <h5 class="mb-0" id="listTitle">
+        <i class="bi bi-list-ul me-2"></i>
+        Liste des employés
+      </h5>
+    </div>
+    <div class="col-md-6 text-end">
+      <small class="text-muted" id="paginationDetails"></small>
+    </div>
+  </div>
+</div>
+
+
+<!-- frontend/annuaire.html -->
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nom</th><th>Poste</th><th>Statut</th><th>Site</th><th>Email</th>
+        <th>Département</th><th>Service</th><th>Numero QC</th><th>Matricules</th><th>Mot de passe</th><th>Actions</th>
+      </tr>
+    </thead>
+    <tbody id="employeeTableBody"></tbody>
+  </table>
+</div>
+
+<!-- Pagination -->
+<!-- Pagination simulée -->
+<nav aria-label="Pagination" class="mt-4">
+  <ul class="pagination justify-content-center">
+    
+    <!-- Bouton Premier -->
+    <li class="page-item disabled">
+      <a class="page-link" href="#" title="Première page">
+        <i class="bi bi-chevron-double-left"></i>
+      </a>
+    </li>
+
+    <!-- Bouton Précédent -->
+    <li class="page-item disabled">
+      <a class="page-link" href="#" title="Page précédente">
+        <i class="bi bi-chevron-left"></i> Précédent
+      </a>
+    </li>
+
+    <!-- Pages numérotées -->
+    <li class="page-item active">
+      <a class="page-link" href="#">1</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="#">2</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="#">3</a>
+    </li>
+    <li class="page-item disabled">
+      <span class="page-link">...</span>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="#">10</a>
+    </li>
+
+    <!-- Bouton Suivant -->
+    <li class="page-item">
+      <a class="page-link" href="#" title="Page suivante">
+        Suivant <i class="bi bi-chevron-right"></i>
+      </a>
+    </li>
+
+    <!-- Bouton Dernier -->
+    <li class="page-item">
+      <a class="page-link" href="#" title="Dernière page">
+        <i class="bi bi-chevron-double-right"></i>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- Bouton retour en haut -->
+    <button type="button" id="scrollTopBtn" onclick="scrollToTop()">
+        <i class="bi bi-arrow-up" id="scrollIcon"></i>
+    </button>
+
+    <!-- Section réseaux sociaux -->
+    <section class="bg-light py-5">
+        <div class="container-fluid justify-content-center">
+            <h4>Suivez nous</h4>
+            <div class="mt-2">
+                <ul class="list-unstyled d-flex justify-content-center">
+                    <li role="presentation">
+                        <a href="https://fr-fr.facebook.com/camairco/" class="social-cart-logo" target="_blank" title="Facebook">
+                            <i class="bi bi-facebook me-3"></i>
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="https://twitter.com/camairco" class="social-cart-logo" target="_blank" title="Twitter">
+                            <i class="bi bi-twitter me-3"></i>
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="https://www.linkedin.com/company/1346174/" class="social-cart-logo" target="_blank" title="LinkedIn">
+                            <i class="bi bi-linkedin me-3"></i>
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="https://www.linkedin.com/company/1346174/" class="social-cart-logo" target="_blank" title="YouTube">
+                            <i class="bi bi-youtube me-3"></i>
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="https://www.instagram.com/camair_co_officiel/" class="social-cart-logo" target="_blank" title="Instagram">
+                            <i class="bi bi-instagram me-3"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4 mt-0">
+        <div class="container-fluid">
+            <div class="footer-bottom">
+                <div class="row justify-content-center">
+                    <div class="col-6 col-sm-auto mb-2">
+                        <a href="#" class="text-white me-2">Conditions Générales d'Utilisation</a>
+                    </div>
+                    <div class="col-6 col-sm-auto mb-2">
+                        <a href="#" class="text-white">Politique de Confidentialité</a>
+                    </div>
+                </div>
+            </div>
+            <hr class="bg-white">
+            <p class="mb-0 text-center">&copy;Copyright ©2025 by Cameroon Airlines Corporation, SA- Tous les droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Affiche ou cache le bouton selon la position
+        window.onscroll = function () {
+            const btn = document.getElementById("scrollTopBtn");
+            btn.style.display = (document.documentElement.scrollTop > 200) ? "flex" : "none";
+        };
+
+        // Change l'icône au survol
+        const scrollBtn = document.getElementById("scrollTopBtn");
+        const scrollIcon = document.getElementById("scrollIcon");
+
+        if (scrollBtn && scrollIcon) {
+            scrollBtn.addEventListener("mouseenter", () => {
+                scrollIcon.className = "bi bi-chevron-double-up";
+            });
+
+            scrollBtn.addEventListener("mouseleave", () => {
+                scrollIcon.className = "bi bi-arrow-up";
+            });
+        }
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
