@@ -15,4 +15,7 @@ return [
     'PUT' => [
         '/api/personnel/*' => function($config){ (new AuthController($config))->updateUser(); }, // admin only
     ],
+    'DELETE' => [
+        '/api/personnel/*' => function($config){ (new AuthController($config))->deleteUser(); }, // admin only
+    ]
 ];

@@ -18,7 +18,10 @@
     <nav class="navbar navbar-expand-lg bg-white border-bottom">
       <div class="container-fluid">
         <a class="navbar-brand" href="#"
-          ><img src="assets/img/camairco-logo.svg" alt="Camair‑Co"
+          ><img
+            src="assets/img/camairco-logo.png"
+            alt="Camair‑Co"
+            class="rounded-circle shadow"
         /></a>
         <div class="d-flex gap-2">
           <a href="profil.html" class="btn btn-outline-secondary"
@@ -30,6 +33,9 @@
             class="btn btn-outline-primary d-none"
             ><i class="fa fa-gauge"></i> Dashboard</a
           >
+          <button id="btn-logout" class="btn btn-danger">
+            <i class="fa fa-right-from-bracket"></i> Déconnexion
+          </button>
         </div>
       </div>
     </nav>
@@ -44,14 +50,18 @@
             <input id="nom" class="form-control" placeholder="Nom" />
           </div>
           <div class="col-md-4 text-end">
-            <button type="button" class="btn btn-outline-secondary me-2" id="btn-advanced-search">
+            <button
+              type="button"
+              class="btn btn-outline-secondary me-2"
+              id="btn-advanced-search"
+            >
               <i class="fa fa-gear"></i> Recherche avancée
             </button>
             <button class="btn btn-success" id="btn-search">
               <i class="fa fa-magnifying-glass"></i> Rechercher
             </button>
           </div>
-          
+
           <!-- Advanced search fields (hidden by default) -->
           <div id="advanced-search-fields" class="row g-2 mt-2 d-none">
             <div class="col-md-4">
@@ -84,7 +94,7 @@
               <input id="ville" class="form-control" placeholder="Ville" />
             </div>
           </div>
-          
+
           <!-- Hidden inputs -->
           <input type="hidden" id="limit" value="25" />
           <input type="hidden" id="offset" value="0" />
@@ -113,10 +123,10 @@
       <div id="search-message" class="text-danger mt-2"></div>
     </div>
 
-    <footer class="footer-stick text-center">
-      <button id="btn-logout" class="btn btn-danger">
-        <i class="fa fa-right-from-bracket"></i> Déconnexion
-      </button>
+    <footer class="footer-stick text-center bg-success text-white p-3">
+      <p class="m-0">
+        © Copyright Cameroon Airlines Corporation - Tous droits réservés
+      </p>
     </footer>
 
     <script type="module">

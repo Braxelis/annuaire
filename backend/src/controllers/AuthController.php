@@ -128,4 +128,34 @@ class AuthController {
             Response::error('Erreur lors de la mise à jour de l\'utilisateur', 500);
         }
     }
+    
+    public function deleteUser() {
+        try {
+            // Vérifier si l'utilisateur est admin
+            $auth = new Auth($this->config);
+            $currentUser = $auth->authenticate(true); // true = require admin
+            
+            // Récupérer l'ID depuis l'URL
+            $urlParts = explode('/', $_SERVER['REQUEST_URI']);
+            $userId = end($urlParts);
+            
+            if (!$userId) {
+                Response::json(['error' => 'ID utilisateur requis'], 400);
+                return;
+            }
+            
+            // Appeler le service pour supprimer
+            $service = new AuthService($this->config);
+            $success = $service->deleteUser($userId);
+            
+            if ($success) {
+                Response::json(['message' => 'Utilisateur supprimé avec succès']);
+            } else {
+                Response::json(['error' => 'Erreur lors de la suppression'], 500);
+            }
+            
+        } catch (Exception $e) {
+            Response::json(['error' => $e->getMessage()], 500);
+        }
+    }
 }
