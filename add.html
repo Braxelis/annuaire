@@ -1,0 +1,845 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Réservez votre prochain voyage en ligne avec des billet d'avion pas cher. Vol pas cher pour voyages dans le monde entier par - Camair-co | l'étoile du Cameroun" />
+  <title>Annuaire-Camair-Co</title>
+  
+  <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="plugins/ps-icon/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+  <!-- CSS Library-->
+  <link rel="stylesheet" href="plugins/bootstrap/dist/css/bootstrap.min.css">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap Icons (pour bi bi-house) -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+  <link rel="icon" href="Assets/Images/Camair1.jpeg" type="image-icon">
+  <link rel="apple-touch-icon" href="Assets/Images/Camair1.jpeg" type="image-icon">
+  <style>:root {
+    --camair-red: #CC1F2F;
+    --camair-yellow: #FFCC00;
+    --camair-green: rgb(10, 104, 41);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+    body {
+        font-size: 14px;
+        font-weight: 400;
+        font-family: "proxima-nova","Open Sans","Arial","Helvetica",sans-serif;
+        min-width: 1.875em;
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+        color: var(--camair-green);
+        background-color: #f7f7f7;
+        width: 100%;
+        -webkit-font-smoothing: antialiased;
+    } .table-responsive {
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        overflow: hidden;
+        background: white;
+    }
+    
+    .table thead th {
+        background-color: #f8f9fa;
+        border: none;
+        font-weight: 600;
+        padding: 15px;
+        color: var(--camair-green);
+    }
+    
+    .table tbody tr {
+        transition: all 0.3s ease;
+    }
+    
+    .table tbody tr:hover {
+        background-color: #f8f9fa;
+        transform: scale(1.01);
+    }
+    
+    .breadcrumb {
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .nav-link {
+        color: #495057 !important;
+        padding: 12px 15px;
+        margin: 2px 0;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+    
+    .nav-link:hover {
+        background-color: #e9ecef;
+        transform: translateX(5px);
+    }
+    
+    .nav-link.active {
+        background-color: lightblue;
+        color: var(--camair-green) !important;
+    }
+    #scrollTopBtn {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background-color: var(--camair-green);
+        border: none;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+        z-index: 1050;
+    }
+    
+    #scrollTopBtn:hover {
+        transform: scale(1.1);
+    }
+    
+    #scrollIcon {
+        color: white;
+        font-size: 24px;
+    }
+/* Navigation */
+.navbar-camair {
+    width: 100%;
+    height: 85px;
+    background-color: var(--camair-green);
+    background-image: url('Assets/images/log.png');
+    background-attachment: local;
+    background-position-x: right;
+    background-repeat: no-repeat;
+    background-position-y: top;
+    background-size: 165px;
+}
+
+.top-bar {
+    background: white;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+/* Sidebar */
+.sidebar {
+    
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+
+.nav-link {
+    color: #495057 !important;
+    padding: 12px 15px;
+    margin: 2px 0;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.nav-link:hover {
+    background-color: #e9ecef;
+    transform: translateX(5px);
+}
+
+.nav-link.active {
+    background-color: lightblue;
+    color: var(--camair-green) !important;
+}
+
+/* Cards */
+.stats-card {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.stats-card:hover {
+    transform: translateY(-5px);
+}
+
+.stats-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.icon-employees { background: #007bff; }
+.icon-departments { background: #28a745; }
+.icon-active { background: #17a2b8; }
+.icon-sites { background: #6f42c1; }
+
+    .btn-primary {
+        background: var(--camair-green);
+        padding: 0.5rem 1.5rem;
+        font-weight: 500;
+    }
+    
+    .dashboard-header {
+        background: linear-gradient(135deg, var(--camair-green) 0%, #0d7a36 100%);
+        border-radius: 15px;
+        color: white;
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 2rem;
+    }
+    
+    .stats-card {
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .stats-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+    
+    .stats-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        color: white;
+        margin-bottom: 1rem;
+    }
+    
+    .icon-employees { background: linear-gradient(45deg, #4CAF50, #8BC34A); }
+    .icon-departments { background: linear-gradient(45deg, #2196F3, #03DAC6); }
+    .icon-active { background: linear-gradient(45deg, #FF9800, #FFC107); }
+    .icon-sites { background: linear-gradient(45deg, #9C27B0, #E91E63); }
+    
+    .search-container {
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        margin-bottom: 20px;
+    }
+    
+    .search-box {
+        position: relative;
+    }
+    
+    .search-input {
+        border: 2px solid #e9ecef;
+        border-radius: 10px;
+        padding: 12px 50px 12px 20px;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        width: 100%;
+    }
+    
+    .search-input:focus {
+        border-color: var(--camair-green);
+        box-shadow: 0 0 0 0.2rem rgba(10, 104, 41, 0.25);
+        outline: none;
+    }
+    
+    .search-btn {
+        position: absolute;
+        right: 5px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: var(--camair-green);
+        border: none;
+        border-radius: 8px;
+        padding: 8px 15px;
+        color: white;
+        transition: all 0.3s ease;
+    }
+    
+    .search-btn:hover {
+        background: #0d7a36;
+        transform: translateY(-50%) scale(1.05);
+    }
+    
+    .clear-search {
+        background: #6c757d;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 8px 15px;
+        margin-left: 10px;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+    }
+    
+    .clear-search:hover {
+        background: #5a6268;
+        color: white;
+        transform: scale(1.05);
+    }
+    
+    .search-results-info {
+        background: #e3f2fd;
+        border: 1px solid #90caf9;
+        border-radius: 8px;
+        padding: 10px 15px;
+        margin-bottom: 15px;
+        color: #1976d2;
+    }
+
+section{
+    color: var(--camair-green);
+    text-align: center;
+}
+section.bi-facebook:hover { color: #4267B2; }
+section .bi-twitter:hover  { color: #1DA1F2; }
+section.bi-linkedin:hover { color: #0077B5;}
+section .bi-youtube:hover { color: #c13535 }
+section .bi-instagram:hover { color: #C13584;
+ }
+.reseau-sociaux{
+    text-align: center;
+    color: var(--camair-green);
+}
+.fa {
+	font-family: 'FontAwesome';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+.bi {
+	font-family: 'FontAwesome';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+/* Employee Cards */
+.employee-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.employee-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.employee-photo {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.employee-info {
+    padding: 1.5rem;
+}
+
+.employee-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: var(--camair-green);
+}
+
+.employee-matricule {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.department-badge {
+    background: var(--camair-green);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+.employee-details {
+    list-style: none;
+}
+
+.employee-details li {
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.employee-details i {
+    margin-right: 8px;
+    width: 16px;
+    color: var(--camair-green);
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 2rem 0;
+}
+
+.pagination button {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    background: white;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.pagination button:hover {
+    background: var(--camair-green);
+    color: white;
+}
+
+.pagination button.active {
+    background: var(--camair-green);
+    color: white;
+    border-color: var(--camair-green);
+}
+
+.pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+  .pagination .page-link {
+        color: var(--camair-green);
+        border-color: #dee2e6;
+        padding: 12px 16px;
+        margin: 0 3px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+    
+    .pagination .page-link:hover {
+        color: white;
+        background-color: var(--camair-green);
+        border-color: var(--camair-green);
+        transform: translateY(-2px);
+    }
+    
+    .pagination .page-item.active .page-link {
+        background-color: var(--camair-green);
+        border-color: var(--camair-green);
+    }
+    
+    .pagination .page-item.disabled .page-link {
+        color: #6c757d;
+        background-color: white;
+        border-color: #dee2e6;
+    }
+    
+    .pagination-info {
+        background: white;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        margin-bottom: 20px;
+    }
+/* Loading */
+.loading {
+    text-align: center;
+    padding: 2rem;
+}
+
+.spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid var(--camair-green);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Footer */
+footer {
+    background-color: var(--camair-green);
+    color: white;
+    padding: 2rem 0;
+    margin-top: 3rem;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.social-links a {
+    color: white;
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--camair-yellow);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 250px;
+        height: 100vh;
+        background: white;
+        z-index: 1000;
+        transition: left 0.3s ease;
+    }
+    
+    .sidebar.active {
+        left: 0;
+    }
+    
+    .main-content {
+        margin-left: 0;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .search-form {
+        flex-direction: column;
+    }
+    
+    .search-input {
+        margin-bottom: 1rem;
+    }
+}
+
+</style>
+  
+</head>
+
+<body>
+   <!-- Zone blanche supérieure -->
+    <div class="top-bar">
+        <div class="container d-flex justify-content-end align-items-center">
+            <!-- Dropdown Langue -->
+            <div class="dropdown me-3 border-end-0">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                    <i class="bi bi-translate"></i> Fr
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" >Français</a></li>
+                    <li><a class="dropdown-item" >English</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Barre de navigation -->
+    <nav class="navbar navbar-expand-md navbar-camair">
+        <div class="container-brand pc">
+            <div class="topbar-left">
+                <a class="navbar-brand d-flex align-items-center ms-0 ps-0 col-xs-6" href="Index.html">
+                    <img src="Assets/Images/logo-camair-co.png" alt="avion plein ciel" class="mt-2" style="width:200px; height:60px">
+                </a>
+            </div>
+        </div>
+    </nav>
+
+   <div class="container-fluid">
+        <div class="row">
+        <!-- Menu latéral -->
+            <nav class="col-md-2 col-lg-2 d-md-block bg-light sidebar">
+                <div class="position-sticky pt-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item"><a class="nav-link" href="index.php">🏠 Accueil</a></li>
+                        <li class="nav-item"><a class="nav-link " href="dashboard.php">📋 Dashboard</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="add2.php">➕ Ajouter</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="profile.php">
+                                <i class="bi bi-person-circle me-2"></i>Mon profil
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="logout.php">🚪 Déconnexion</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <main class="col-md-10 ms-sm-auto col-lg-10 px-md-4">
+                <!-- Breadcrumb -->
+                  <div class="container py-5">
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb mb-0 py-2 px-3">
+                <li class="breadcrumb-item">
+                    <a href="index.html" class="text-decoration-none">
+                        <i class="bi bi-house"></i> Accueil
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="dashboard.html" class="text-decoration-none">Dashboard</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    Ajouter 
+                </li>
+            </ol>
+        </nav>
+                  </div>
+ 
+      <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="card shadow">
+                    <div class="card-header bg-success text-white">
+                        <h2 class="mb-0">➕ Ajouter un nouvel employé</h2>
+                    </div>
+
+<form id="employeeForm" class="row g-3 mt-2 mx-auto">
+
+  <!-- Première ligne -->
+  <div class="col-md-4">
+    <label class="form-label">Nom <span class="required">*</span></label>
+    <input type="text" name="nom" class="form-control" required>
+  </div>
+
+  <div class="col-md-4">
+    <label class="form-label">Poste <span class="required">*</span></label>
+    <select name="poste" class="form-select" required>
+      <option value="">-- Sélectionner un poste --</option>
+      <option value="Directeur Général">Directeur Général</option>
+      <option value="Directeur Adjoint">Directeur Adjoint</option>
+      <option value="Chef de Service">Chef de Service</option>
+      <option value="Responsable RH">Responsable RH</option>
+      <option value="Agent Commercial">Agent Commercial</option>
+      <option value="Technicien Maintenance">Technicien Maintenance</option>
+      <option value="Chargé de Sécurité">Chargé de Sécurité</option>
+      <option value="Comptable">Comptable</option>
+      <option value="Assistant">Assistant</option>
+    </select>
+  </div>
+
+  <div class="col-md-4">
+    <label class="form-label">Statut <span class="required">*</span></label>
+    <select name="statut" class="form-select" required>
+      <option value="">-- Sélectionner un statut --</option>
+      <option value="Employé">Employé</option>
+      <option value="Stagiaire">Stagiaire</option>
+      <option value="AS">AS</option>
+    </select>
+  </div>
+
+  <!-- Deuxième ligne -->
+  <div class="col-md-4">
+    <label class="form-label">Email</label>
+    <input type="email" name="email" class="form-control">
+  </div>
+
+  <div class="col-md-4">
+    <label class="form-label">Matricule</label>
+    <input type="text" name="matricule" class="form-control" placeholder="Ex: MAT001">
+  </div>
+
+  <div class="col-md-4">
+    <label class="form-label">Département <span class="required">*</span></label>
+    <select name="departement" class="form-select" required>
+      <option value="">-- Sélectionner un département --</option>
+      <option value="Direction">Direction</option>
+      <option value="Technique">Technique</option>
+      <option value="Commercial">Commercial</option>
+      <option value="Ressources Humaines">Ressources Humaines</option>
+      <option value="Finance">Finance</option>
+      <option value="Sécurité">Sécurité</option>
+    </select>
+  </div>
+
+  <!-- Troisième ligne -->
+  <div class="col-md-4">
+    <label class="form-label">Service <span class="required">*</span></label>
+    <select name="service" class="form-select" required>
+      <option value="">-- Sélectionner un service --</option>
+      <option value="Administration">Administration</option>
+      <option value="Maintenance">Maintenance</option>
+      <option value="Ventes">Ventes</option>
+      <option value="Réservations">Réservations</option>
+      <option value="Comptabilité">Comptabilité</option>
+    </select>
+  </div>
+
+  <div class="col-md-4">
+    <label class="form-label">Site <span class="required">*</span></label>
+    <select name="site" class="form-select" required>
+      <option value="">-- Sélectionner un site --</option>
+      <option value="Douala">Douala</option>
+      <option value="Yaoundé">Yaoundé</option>
+      <option value="Bafoussam">Bafoussam</option>
+      <option value="Garoua">Garoua</option>
+    </select>
+  </div>
+
+  <div class="col-md-4">
+    <label class="form-label">Numéro QC</label>
+    <input type="text" name="numero_qc" class="form-control" placeholder="Ex: QC001">
+  </div>
+
+
+   <!-- Quatrième ligne -->
+                            
+        <div class="col-md-4">
+             <label class="form-label">Mot de passe<span class="required">*</span></label>
+                 <input type="text" name="mot_de_passe" class="form-control" placeholder="Ex: juin@2002">
+        </div>
+ <!-- Boutons -->
+        <div class="col-12 mb-3">
+                 <hr>
+            <button type="submit" class="btn btn-success me-2">
+                      <i class="bi bi-person-plus me-2"></i>Ajouter l'employé
+                    </button>
+        <a href="Dashboard.html" class="btn btn-secondary">
+        <i class="bi bi-arrow-left me-2"></i>Retour au tableau de bord
+                                </a>
+                            </div>
+</form>
+
+                </div></div></div></main></div></div>
+
+
+         <!-- Bouton retour en haut -->
+    <button type="button" id="scrollTopBtn" onclick="scrollToTop()">
+        <i class="bi bi-arrow-up" id="scrollIcon"></i>
+    </button>
+
+    <!-- Section réseaux sociaux -->
+    <section class="bg-light py-5">
+        <div class="container-fluid justify-content-center">
+            <h4>Suivez nous</h4>
+            <div class="mt-2">
+                <ul class="list-unstyled d-flex justify-content-center">
+                    <li role="presentation">
+                        <a href="https://fr-fr.facebook.com/camairco/" class="social-cart-logo" target="_blank" title="Facebook">
+                            <i class="bi bi-facebook me-3"></i>
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="https://twitter.com/camairco" class="social-cart-logo" target="_blank" title="Twitter">
+                            <i class="bi bi-twitter me-3"></i>
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="https://www.linkedin.com/company/1346174/" class="social-cart-logo" target="_blank" title="LinkedIn">
+                            <i class="bi bi-linkedin me-3"></i>
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="https://www.linkedin.com/company/1346174/" class="social-cart-logo" target="_blank" title="YouTube">
+                            <i class="bi bi-youtube me-3"></i>
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="https://www.instagram.com/camair_co_officiel/" class="social-cart-logo" target="_blank" title="Instagram">
+                            <i class="bi bi-instagram me-3"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4 mt-0">
+        <div class="container-fluid">
+            <div class="footer-bottom">
+                <div class="row justify-content-center">
+                    <div class="col-6 col-sm-auto mb-2">
+                        <a href="#" class="text-white me-2">Conditions Générales d'Utilisation</a>
+                    </div>
+                    <div class="col-6 col-sm-auto mb-2">
+                        <a href="#" class="text-white">Politique de Confidentialité</a>
+                    </div>
+                </div>
+            </div>
+            <hr class="bg-white">
+            <p class="mb-0 text-center">&copy;Copyright ©2025 by Cameroon Airlines Corporation, SA- Tous les droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Affiche ou cache le bouton selon la position
+        window.onscroll = function () {
+            const btn = document.getElementById("scrollTopBtn");
+            btn.style.display = (document.documentElement.scrollTop > 200) ? "flex" : "none";
+        };
+
+        // Change l'icône au survol
+        const scrollBtn = document.getElementById("scrollTopBtn");
+        const scrollIcon = document.getElementById("scrollIcon");
+
+        if (scrollBtn && scrollIcon) {
+            scrollBtn.addEventListener("mouseenter", () => {
+                scrollIcon.className = "bi bi-chevron-double-up";
+            });
+
+            scrollBtn.addEventListener("mouseleave", () => {
+                scrollIcon.className = "bi bi-arrow-up";
+            });
+        }
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
