@@ -115,4 +115,9 @@ class Personnel {
         
         return $stmt->execute($params);
     }
+    public function delete(string $matricule) : bool {
+        $sql = "DELETE FROM personnel WHERE matricule = :matricule";
+        $stmt = $this->pdo->prepare($sql);
+        return $stmt->execute(['matricule' => $matricule]);
+    }
 }

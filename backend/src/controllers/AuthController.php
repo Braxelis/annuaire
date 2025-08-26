@@ -129,33 +129,42 @@ class AuthController {
         }
     }
     
-    public function deleteUser() {
+    public function deleteUser() : void {
         try {
-            // Vérifier si l'utilisateur est admin
-            $auth = new Auth($this->config);
-            $currentUser = $auth->authenticate(true); // true = require admin
+            // Use AuthHelper instead of Auth
+            $authData = AuthHelper::requireToken($this->config);
+            AuthHelper::requireAdmin($authData['payload']);
             
-            // Récupérer l'ID depuis l'URL
-            $urlParts = explode('/', $_SERVER['REQUEST_URI']);
-            $userId = end($urlParts);
+            // Get matricule from URL
+            $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+            $parts = explode('/', $path);
+            $matricule = end($parts);
             
-            if (!$userId) {
-                Response::json(['error' => 'ID utilisateur requis'], 400);
-                return;
+            if (empty($matricule)) {
+                Response::error('Matricule requis dans l\'URL', 400);
             }
-            
-            // Appeler le service pour supprimer
-            $service = new AuthService($this->config);
-            $success = $service->deleteUser($userId);
+
+            // Get database connection and personnel model
+            $pdo = Database::getConnection($this->config['db']);
+            $model = new Personnel($pdo);
+
+            // Check if user exists
+            $existing = $model->findByMatricule($matricule);
+            if (!$existing) {
+                Response::error('Utilisateur non trouvé', 404);
+            }
+
+            // Delete the user
+            $success = $model->delete($matricule);
             
             if ($success) {
                 Response::json(['message' => 'Utilisateur supprimé avec succès']);
             } else {
-                Response::json(['error' => 'Erreur lors de la suppression'], 500);
+                Response::error('Erreur lors de la suppression', 500);
             }
             
         } catch (Exception $e) {
-            Response::json(['error' => $e->getMessage()], 500);
+            Response::error($e->getMessage(), 500);
         }
     }
 }
