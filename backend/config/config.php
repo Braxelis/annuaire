@@ -14,6 +14,7 @@ return [
         'ttl'  => 3600
     ],
     'cors' => [
-        'allowed_origins' => explode(',', getenv('CORS_ALLOWED') ?: 'http://127.0.0.1:5500,http://localhost:3000,http://localhost:8080'),
+        'allowed_origins' => ['*'],
     ],
 ];
+

@@ -1,5 +1,5 @@
 const API_BASE_URL =
-  localStorage.getItem("ANNUIARE_API_BASE_URL") || "http://localhost:8000";
+  localStorage.getItem("ANNUIARE_API_BASE_URL") || "";
 const TOKEN_KEY = "ANNUIARE_TOKEN",
   USER_KEY = "ANNUIARE_USER";
 
