@@ -1,8 +1,8 @@
 import { currentUser, mountAuthGuard, mountLogoutButton } from './auth.js';
 import { qs } from './utils.js';
 
-export function mountProfilePage(){
-  mountAuthGuard();
+export async function mountProfilePage(){
+  await mountAuthGuard();
   mountLogoutButton();
   const u = currentUser();
   if(!u) return;

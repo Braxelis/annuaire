@@ -54,8 +54,22 @@ export async function logout() {
   setToken(null);
   setUser(null);
 }
-export function requireAuth(redirect = "login.html") {
-  if (!getToken()) window.location.href = redirect;
+export async function requireAuth(redirect = "login.html") {
+  const token = getToken();
+  if (!token) {
+    window.location.href = redirect;
+    return;
+  }
+
+  // Validate token by calling /api/me
+  try {
+    await api("/api/me", { method: "GET" });
+  } catch (error) {
+    // Token is invalid, clear it and redirect
+    setToken(null);
+    setUser(null);
+    window.location.href = redirect;
+  }
 }
 export function requireAdminGuard(redirect = "annuaire.html") {
   const u = getUser();

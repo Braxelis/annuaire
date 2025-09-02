@@ -8,7 +8,7 @@ function getParam(name){
 }
 
 export async function mountFichePage(){
-  mountAuthGuard();
+  await mountAuthGuard();
   mountLogoutButton();
   const matricule = getParam('matricule');
   const msg = qs('#fiche-message');

@@ -82,7 +82,9 @@
 
     <script type="module">
       import { mountFichePage } from "./js/fiche.js";
-      mountFichePage();
+      (async () => {
+        await mountFichePage();
+      })();
     </script>
   </body>
 </html>

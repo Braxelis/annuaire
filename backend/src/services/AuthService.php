@@ -59,26 +59,8 @@ class AuthService {
     }
     
     public function deleteUser($userId) {
-        try {
-            $db = new Database($this->config);
-            $conn = $db->connect();
-            
-            // Vérifier si l'utilisateur existe
-            $stmt = $conn->prepare("SELECT matricule FROM personnel WHERE matricule = ?");
-            $stmt->execute([$userId]);
-            
-            if ($stmt->rowCount() === 0) {
-                throw new Exception("Utilisateur non trouvé");
-            }
-            
-            // Supprimer l'utilisateur
-            $stmt = $conn->prepare("DELETE FROM personnel WHERE matricule = ?");
-            $success = $stmt->execute([$userId]);
-            
-            return $success;
-            
-        } catch (Exception $e) {
-            throw $e;
-        }
+        // This method is unused and references undefined $this->config
+        // It should be removed or fixed if needed
+        throw new \BadMethodCallException('deleteUser method is deprecated. Use Personnel model delete method instead.');
     }
 }

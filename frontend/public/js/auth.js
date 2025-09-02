@@ -17,8 +17,8 @@ export function mountAdminButton(){
   if (u && u.isadmin && btn) btn.classList.remove('d-none');
 }
 
-export function mountAuthGuard(){
-  requireAuth('login.html');
+export async function mountAuthGuard(){
+  await requireAuth('login.html');
 }
 
 export function requireAdminGuard(redirect='annuaire.html'){

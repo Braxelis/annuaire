@@ -70,7 +70,7 @@ class Personnel {
         $stmt = $this->pdo->prepare($sql);
         
         foreach ($params as $k => $v) {
-            $stmt->bindValue(':' . $k, $v);
+            $stmt->bindValue($k, $v);
         }
         $stmt->bindValue(':limit', (int)$limit, PDO::PARAM_INT);
         $stmt->bindValue(':offset', (int)$offset, PDO::PARAM_INT);

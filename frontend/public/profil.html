@@ -81,7 +81,9 @@
 
     <script type="module">
       import { mountProfilePage } from "./js/profil.js";
-      mountProfilePage();
+      (async () => {
+        await mountProfilePage();
+      })();
     </script>
   </body>
 </html>

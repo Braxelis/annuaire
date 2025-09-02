@@ -132,8 +132,8 @@ function toggleAdvancedSearch() {
   }
 }
 
-export function mountSearchPage() {
-  mountAuthGuard();
+export async function mountSearchPage() {
+  await mountAuthGuard();
   mountLogoutButton();
   mountAdminButton();
   const form = qs("#search-form");
@@ -142,11 +142,11 @@ export function mountSearchPage() {
     qs("#offset").value = 0; // Reset pagination on new search
     doSearch();
   });
-  
+
   // Add advanced search toggle functionality
   const advancedBtn = qs("#btn-advanced-search");
   advancedBtn.addEventListener("click", toggleAdvancedSearch);
-  
+
   handlePagination();
   doSearch();
 }

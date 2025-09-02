@@ -131,7 +131,9 @@
 
     <script type="module">
       import { mountSearchPage } from "./js/search.js";
-      mountSearchPage();
+      (async () => {
+        await mountSearchPage();
+      })();
     </script>
   </body>
 </html>
